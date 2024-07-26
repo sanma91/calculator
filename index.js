@@ -1,78 +1,66 @@
-const screenResult = document.querySelector("#result");
-const clear = document.querySelector("#clear")
-const firstRow = document.querySelector("#firstRow");
-const secondRow = document.querySelector("#secondRow");
-const thirdRow = document.querySelector("#thirdRow");
-const fourthRow = document.querySelector("#fourthRow");
-const zero = document.querySelector("#zero");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
-const plus = document.querySelector("#plus");
-const minus = document.querySelector("#minus");
-const multiply = document.querySelector("#multiply");
-const divide = document.querySelector("#divide");
-const equal = document.querySelector("#equal");
-const dot = document.querySelector("#dot");
-
-function calculator() {
-zero.addEventListener("click", () => {
-    return screenResult.textContent += 0
-})
-one.addEventListener("click", () => {
-    return screenResult.textContent += 1
-})
-two.addEventListener("click", () => {
-    return screenResult.textContent += 2
-})
-three.addEventListener("click", () => {
-    return screenResult.textContent += 3
-})
-four.addEventListener("click", () => {
-    return screenResult.textContent += 4
-})
-five.addEventListener("click", () => {
-    return screenResult.textContent += 5
-})
-six.addEventListener("click", () => {
-    return screenResult.textContent += 6
-})
-seven.addEventListener("click", () => {
-    return screenResult.textContent += 7
-})
-eight.addEventListener("click", () => {
-    return screenResult.textContent += 8
-})
-nine.addEventListener("click", () => {
-    return screenResult.textContent += 9
-})
-plus.addEventListener("click", () => {
-    return screenResult.textContent += "+"
-})
-minus.addEventListener("click", () => {
-    return screenResult.textContent = "-"
-})
-multiply.addEventListener("click", () => {
-    return screenResult.textContent = "*"
-})
-divide.addEventListener("click", () => {
-    return screenResult.textContent = "/"
-})
-equal.addEventListener("click", () => {
-    return screenResult.textContent = "="
-})
-dot.addEventListener("click", () => {
-    return screenResult.textContent = "."
-})
-clear.addEventListener("click", () => {
-    return screenResult.textContent = ""
-})
+function add(a, b) {
+    return a + b
+}
+function subtract(a, b) {
+    return a - b
+}
+function multiply(a, b) {
+    return a * b
+}
+function divide(a, b) {
+    if(b === 0) {
+        return display.textContent = "Can't do that!"
+    }
+    return a / b
 }
 
-calculator()
+const display = document.querySelector("#result");
+const buttons = document.querySelectorAll("button");
+
+let firstNum;
+let operator;
+let secondNum;
+
+function operate(firstNum, operator, secondNum) {
+    switch(operator) {
+        case "+":
+            return add(firstNum, secondNum);
+        case "-":
+            return subtract(firstNum, secondNum);
+        case "*":
+            return multiply(firstNum, secondNum);
+        case "/":
+            return divide(firstNum, secondNum)
+    }
+}
+
+buttons.forEach(button => {
+    if(button.className === "number" || button.id === "dot") {
+        button.addEventListener("click", () => {
+        display.textContent += button.textContent
+        })
+    }
+    else if(button.className === "operator") {
+        button.addEventListener("click", () => {
+            display.textContent.slice(0, );
+            firstNum = display.textContent;
+            operator = button.textContent;
+            console.log(firstNum + " this is the firstNum");
+            console.log(operator)
+            display.textContent = "";
+        })
+    }
+    else if(button.id === "equal") {
+        button.addEventListener("click", () => {
+            display.textContent.slice(0, );
+            secondNum = display.textContent;
+            console.log(secondNum + " this is the secondNum");
+            display.textContent = operate(+firstNum, operator, +secondNum);
+        })
+    }
+    else if(button.id === "clear") {
+        button.addEventListener("click", () => {
+        display.textContent = ""
+    })
+    }
+})

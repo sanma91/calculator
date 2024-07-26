@@ -35,17 +35,21 @@ body {
 }
 
 #result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 25%;
     width: 75%;
     border-radius: 25px;
     background-color: rgb(174, 196, 196);
     border: 1px solid black;
-    text-align: center;
+    font-size: 50px
 }
 
 #clear {
     height: 15%;
     width: 30%;
+    font-size: 15px;
 }
 
 button {
@@ -54,4 +58,5 @@ button {
     background-color: rgb(174, 196, 196);
     border: 1px solid black;
     border-radius: 25px;
+    font-size: 25px;
 }
